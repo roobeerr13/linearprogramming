@@ -1,5 +1,5 @@
-ortools
-SciPy
-PuLP
-Pyomo
-pywraplp
+sqlalchemy
+sqlite
+numpy
+pandas
+matplolib
