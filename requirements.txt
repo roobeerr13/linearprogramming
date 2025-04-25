@@ -1,1 +1,5 @@
 ortools
+SciPy
+PuLP
+Pyomo
+pywraplp
