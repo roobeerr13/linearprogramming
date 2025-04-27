@@ -1,6 +1,6 @@
 import gradio as gr
-from recursos import Recursos
-from soldados import Soldados
+from recursos.recursos import Recursos
+from soldados.soldados import Soldados
 
 # Instancia de gestión
 gestor_recursos = Recursos()
