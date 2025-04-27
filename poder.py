@@ -1,21 +1,17 @@
-from sqlalchemy import Column, Integer, String, create_engine
-from sqlalchemy.ext.declarative import declarative_base
+import numpy as np
+import pandas as pd
 
-Base = declarative_base()
+def calcular_poder(soldados, recursos):
+    """Calcula el poder total basado en soldados y recursos."""
+    poder_ataque = soldados["ataque"].sum()
+    poder_defensa = soldados["defensa"].sum()
+    recursos_disponibles = recursos["cantidad"].sum()
 
-class Madera(Base):
-    __tablename__ = 'madera'
+    poder_total = (poder_ataque + poder_defensa) * np.log1p(recursos_disponibles)
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    unidad = Column(String, nullable=False)
-    comida = Column(Integer, nullable=False)
-    madera = Column(Integer, nullable=False)
-    oro = Column(Integer, nullable=False)
-    poder = Column(Integer, nullable=False)
-
-    def __str__(self):
-        return f"Unidad: {self.unidad}, 🌾Comida: {self.comida}, 🪵Madera: {self.madera}, 🪙Oro: {self.oro}, 💪Poder: {self.poder}"
-
-# Ejemplo de configuración de la base de datos
-# engine = create_engine('sqlite:///madera.db')
-# Base.metadata.create_all(engine)
+    return {
+        "poder_ataque": poder_ataque,
+        "poder_defensa": poder_defensa,
+        "recursos_disponibles": recursos_disponibles,
+        "poder_total": poder_total
+    }

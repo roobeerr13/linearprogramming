@@ -1,21 +1,35 @@
-from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
+# Configuración de la base de datos
+engine = create_engine('sqlite:///recursos.db')
 Base = declarative_base()
 
+# Definición del modelo
 class Madera(Base):
     __tablename__ = 'madera'
+    id = Column(Integer, primary_key=True)
+    tipo = Column(String, nullable=False)
+    cantidad = Column(Integer, nullable=False)
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    unidad = Column(String, nullable=False)
-    comida = Column(Integer, nullable=False)
-    madera = Column(Integer, nullable=False)
-    oro = Column(Integer, nullable=False)
-    poder = Column(Integer, nullable=False)
+# Crear las tablas
+Base.metadata.create_all(engine)
 
-    def __str__(self):
-        return f"Unidad: {self.unidad}, 🌾Comida: {self.comida}, 🪵Madera: {self.madera}, 🪙Oro: {self.oro}, 💪Poder: {self.poder}"
+# Crear una sesión
+Session = sessionmaker(bind=engine)
+session = Session()
 
-# Ejemplo de configuración de la base de datos
-# engine = create_engine('sqlite:///madera.db')
-# Base.metadata.create_all(engine)
+# Datos iniciales de madera
+maderas = [
+    {"tipo": "madera", "cantidad": 50}
+]
+
+# Insertar los datos en la base de datos
+for madera in maderas:
+    nueva_madera = Madera(tipo=madera["tipo"], cantidad=madera["cantidad"])
+    session.add(nueva_madera)
+
+# Confirmar los cambios
+session.commit()
+session.close()
