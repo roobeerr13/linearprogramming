@@ -1,4 +1,5 @@
 from optimizador import OptimizadorPoder
+import matplotlib.pyplot as plt
 
 def graficar_resultados(soldados, resultado):
     tipos = [s["tipo"] for s in soldados]
