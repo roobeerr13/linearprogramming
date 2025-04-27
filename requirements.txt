@@ -1,7 +1,7 @@
 numpy
 pandas
 matplolib
-pygame
+
 scipy
 sqlalchemy
 sqlite
