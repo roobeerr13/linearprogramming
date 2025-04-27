@@ -1,7 +1,7 @@
-sqlalchemy
-sqlite
 numpy
 pandas
 matplolib
 gradio
 scipy
+sqlalchemy
+sqlite
