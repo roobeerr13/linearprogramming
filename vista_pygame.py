@@ -1,7 +1,7 @@
 import pygame
 import random
 from recursos.recursos import Recursos
-from soldados.recursos import Soldados
+from soldados.soldados import Soldados
 
 # Configuración inicial
 pygame.init()
