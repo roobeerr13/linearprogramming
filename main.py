@@ -1,4 +1,4 @@
-from recursos import Recursos
+from recursos.recursos import Recursos
 
 def main():
     gestor_recursos = Recursos()
